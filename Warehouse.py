@@ -1,5 +1,6 @@
 from collections import Counter
 
+
 class Warehouse:
     def __init__(self, location, products):
         self.location = location

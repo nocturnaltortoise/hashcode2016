@@ -1,21 +1,18 @@
 class Drone:
-    def __init__(self, max_load, init_warehouse):
-        self.max_load = max_load
+    def __init__(self, max_load, init_warehouse, products_carried):
+        max_load = max_load
         self.current_load = 0
         self.warehouse = init_warehouse
+        self.products = products_carried
 
-    @staticmethod
-    def load():
+    def load(self, products, warehouse):
         pass
 
-    @staticmethod
-    def deliver():
+    def deliver(self, products, location):
         pass
 
-    @staticmethod
-    def unload():
+    def unload(self, products, warehouse):
         pass
 
-    @staticmethod
-    def wait():
+    def wait(self, duration):
         pass
