@@ -1,3 +1,15 @@
+import parser
+
+parsed_file = parser.parse('data/busy_day.in')
+drone_count = parsed_file['variables'][2]
+max_load = parsed_file['variables'][4]
+# init_warehouse = Warehouse()
+drones = []
+for i in range(drone_count):
+    # drones.append(Drone(i, max_load, init_warehouse))
+
+# world_state = (drones, orders, warehouses)
+
 def evaluate(dna):
 
     commands = dna.split('|')

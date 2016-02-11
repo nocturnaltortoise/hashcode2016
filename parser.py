@@ -42,7 +42,8 @@ def parse(file):
 
     return {
         'orders': orders,
-        'warehouses': warehouses
+        'warehouses': warehouses,
+        'variables': variables
     }
 
 data = parse('data/busy_day.in')
