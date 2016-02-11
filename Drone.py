@@ -55,8 +55,14 @@ class Drone:
 
         OrderWriter.write([self.id, "W", duration])
 
-w = Warehouse((452, 341), [Product(23,10), Product(23,10)], 10)
+# Tests
 
-d = Drone(0, 200, 0, [Product(23,10), Product(23,10)], False)
-d.load([Product(45,12), Product(45,12)], w)
-d.unload([Product(45,12)], w)
+# init_w = Warehouse((0,0), [Product(45,12), Product(45,12)], 0)
+# w = Warehouse((452, 341), [Product(23,10), Product(23,10)], 10)
+#
+# d = Drone(0, 200, init_w, [Product(23,10), Product(23,10)], False)
+# d.load([Product(45,12), Product(45,12)], w)
+# d.unload([Product(45,12)], w)
+#
+# # print(Order((435,445), [Product(23,10)], 10) == Order((435,445), [Product(23,10)], 10))
+# # print(Warehouse((435,445), [Product(23,10)], 0) == Warehouse((435,445), [Product(23,10)], 0))
