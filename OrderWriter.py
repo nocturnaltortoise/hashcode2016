@@ -12,6 +12,8 @@ class OrderWriter:
     @staticmethod
     def products_to_string(product_counter):
         for product in product_counter:
-            product_string = str(product) + " " + str(product_counter[product])
+            print(product_counter[product])
+            product_string = str(product.type_id) + " " + str(product_counter[product])
 
         return product_string
+

@@ -27,7 +27,7 @@ def parse(file):
 
     products_count = int(lines[1])
 
-    product = [Product(index, int(lines[2].split(' ')[index])) for index in range(len(lines[2].split(' ')))]
+    products = [Product(index, int(lines[2].split(' ')[index])) for index in range(len(lines[2].split(' ')))]
 
     warehouse_count = int(lines[3])
 
@@ -46,4 +46,10 @@ def parse(file):
     }
 
 data = parse('data/busy_day.in')
-print(data['warehouses'][0].products)
+
+# for product in list(data['warehouses'][0].products.elements()):
+#     print(str(product))
+#
+# for order in data['orders']:
+#     for product in list(order.products.elements()):
+#         print(str(product))

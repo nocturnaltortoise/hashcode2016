@@ -1,11 +1,13 @@
 from collections import Counter
 from OrderWriter import OrderWriter
+from Warehouse import Warehouse
+from Product import Product
 
 
 class Drone:
     def __init__(self, id, max_load, init_warehouse, products_carried, is_waiting):
         self.id = id
-        max_load = max_load
+        self.max_load = max_load
         self.current_load = 0
         self.warehouse = init_warehouse
         self.products = Counter(products_carried)
@@ -53,7 +55,8 @@ class Drone:
 
         OrderWriter.write([self.id, "W", duration])
 
-# w = Warehouse((452, 341), [23, 34, 46], 10)
-#
-# d = Drone(0, 200, 0, [23, 34, 46], False)
-# d.load([45, 45], w)
+w = Warehouse((452, 341), [Product(23,10), Product(23,10)], 10)
+
+d = Drone(0, 200, 0, [Product(23,10), Product(23,10)], False)
+d.load([Product(45,12), Product(45,12)], w)
+d.unload([Product(45,12)], w)
