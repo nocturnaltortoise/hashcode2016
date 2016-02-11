@@ -1,6 +1,5 @@
 from collections import Counter
 from OrderWriter import OrderWriter
-from Warehouse import Warehouse
 
 
 class Drone:
@@ -13,27 +12,37 @@ class Drone:
         self.is_waiting = is_waiting
 
     def load(self, products, warehouse):
-        counted_products = Counter(products)
-        if not(self.warehouse == warehouse):
-            self.move(warehouse)
+        if not self.is_waiting:
+            counted_products = Counter(products)
 
-        warehouse.removeProducts(counted_products)
-        OrderWriter.write([self.id, "L", warehouse.id, OrderWriter.products_to_string(counted_products)])
+            if not(self.warehouse == warehouse):
+                self.move(warehouse)
 
-    def deliver(self, order, products, location):
-        counted_products = Counter(products)
-        self.products.subtract(products)
-        # something for indicating the order is finished
+            total_weight = 0
+            for product in counted_products:
+                total_weight += product.weight
 
-        OrderWriter.write([self.id, "D", order.id, OrderWriter.products_to_string(counted_products)])
+            if total_weight <= self.max_load - self.current_load:
+                warehouse.removeProducts(counted_products)
+                OrderWriter.write([self.id, "L", warehouse.id, OrderWriter.products_to_string(counted_products)])
+            # what do we do if the drone can't load the products it's been told to?
+        # drone is waiting, can't load
+
+    def deliver(self, order):
+        if not self.is_waiting:
+            self.products.subtract(order.products)
+            # something for indicating the order is finished
+
+            OrderWriter.write([self.id, "D", order.id, OrderWriter.products_to_string(order.products)])
 
     def unload(self, products, warehouse):
-        counted_products = Counter(products)
-        if not(self.warehouse == warehouse):
-            self.move(warehouse)
+        if not self.is_waiting:
+            counted_products = Counter(products)
+            if not(self.warehouse == warehouse):
+                self.move(warehouse)
 
-        warehouse.addProducts(counted_products)
-        OrderWriter.write([self.id, "U", warehouse.id, OrderWriter.products_to_string(counted_products)])
+            warehouse.addProducts(counted_products)
+            OrderWriter.write([self.id, "U", warehouse.id, OrderWriter.products_to_string(counted_products)])
 
     def move(self, warehouse):
         self.warehouse = warehouse
