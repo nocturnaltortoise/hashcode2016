@@ -6,3 +6,12 @@ class Order:
         self.delivery_location = delivery_location
         self.products = Counter(products)
         self.id = id
+
+    def __eq__(self, other):
+        return self.id == other.id
+
+    def __attrs(self):
+        return (self.delivery_location, self.products, self.id)
+
+    def __hash__(self):
+        return hash(self.__attrs())
