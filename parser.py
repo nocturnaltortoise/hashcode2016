@@ -31,8 +31,9 @@ def parse(file):
 
     warehouse_count = int(lines[3])
 
-    warehouses = [Warehouse(convert_coord(lines[warehouse_no+4]), convert_products(lines[warehouse_no+5], products), warehouse_no) for warehouse_no in range(warehouse_count*2-1)]
-
+    # this used to have for warehouse_no in range(warehouse_count*2-1)
+    # - what was the *2-1 for? It makes us 19 warehouses rather than 10
+    warehouses = [Warehouse(convert_coord(lines[warehouse_no+4]), convert_products(lines[warehouse_no+5], products), warehouse_no) for warehouse_no in range(warehouse_count)]
 
     orders_offset = 4 + warehouse_count * 2
 
